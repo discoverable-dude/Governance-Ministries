@@ -1,0 +1,16 @@
+[
+  { "source": "/offer-item/tbn-uk/", "destination": "/about/tbn-uk/", "permanent": true },
+  { "source": "/offer-item/workplace-ministers/", "destination": "/about/workplace-church/", "permanent": true },
+  { "source": "/offer-item/:slug*", "destination": "/about/", "permanent": true },
+  { "source": "/offer-types/:slug*", "destination": "/about/", "permanent": true },
+  { "source": "/category/:slug*", "destination": "/news/", "permanent": true },
+  { "source": "/author/:slug*", "destination": "/news/", "permanent": true },
+  { "source": "/feed/", "destination": "/news/", "permanent": true },
+  { "source": "/wp-sitemap.xml", "destination": "/sitemap.xml", "permanent": true },
+  { "source": "/wp-sitemap-:path", "destination": "/sitemap.xml", "permanent": true },
+  { "source": "/wp/wp-content/uploads/:path*", "destination": "/content/uploads/:path*", "permanent": true },
+  { "source": "/wp-content/uploads/:path*", "destination": "/content/uploads/:path*", "permanent": true },
+  { "source": "/wp/wp-admin/:path*", "destination": "/", "permanent": true },
+  { "source": "/wp-admin/:path*", "destination": "/", "permanent": true },
+  { "source": "/wp-login.php", "destination": "/", "permanent": true }
+]
