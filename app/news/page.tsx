@@ -14,7 +14,7 @@ export default async function NewsIndex() {
   return (
     <>
       <Breadcrumbs trail={[{ name: "News", href: "/news/" }]} />
-      <div className="wrap pb-16 pt-8 md:pb-[120px]">
+      <div className="wrap pb-16 pt-4 md:pb-[96px]">
         <h1 className="h-display mb-10 text-[40px] text-ink md:text-[56px]">News</h1>
         {posts.length === 0 ? (
           <p className="font-serif text-[18px] text-body">No news yet. Please check back soon.</p>

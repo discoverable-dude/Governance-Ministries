@@ -31,7 +31,7 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
               )}
             </div>
             {!s.compact && (
-              <div className="hero-photo relative h-[230px] overflow-hidden lg:h-[620px]">
+              <div className="hero-photo relative h-[230px] overflow-hidden md:h-[380px] lg:h-[620px]">
                 {s.image ? (
                   <Photo media={s.image} priority sizes="(min-width:1024px) 560px, 100vw" className="h-full w-full" />
                 ) : (
@@ -91,9 +91,9 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
     case "splitFeature":
       return (
         <section className={`mt-14 bg-mist md:mt-[120px]`}>
-          <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[620px_1fr]">
-            <div className="book-photo overflow-hidden"><Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-[600px]" /></div>
-            <div className="reveal flex flex-col justify-center gap-5 px-5 py-8 md:px-12 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
+          <div className="mx-auto grid max-w-[1440px] md:grid-cols-2 lg:grid-cols-[620px_1fr]">
+            <div className="book-photo overflow-hidden"><Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] md:h-full md:min-h-[460px] lg:h-[600px]" /></div>
+            <div className="reveal flex flex-col justify-center gap-5 px-5 py-8 md:px-12 md:py-14 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
               <h2 className="h-display text-[32px] text-ink md:text-[48px] md:leading-[1.08]">{s.heading}</h2>
               {s.eyebrow && <p className="text-[15px] font-semibold text-burgundy lg:text-[16px]">{s.eyebrow}</p>}
               <p className="font-serif text-[17px] leading-[1.7] text-body lg:text-[18px]">{s.body}</p>
@@ -128,13 +128,13 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
     case "richText":
       return (
         <section className={`wrap ${pad}`}>
-          <div className={s.ruled ? "grid gap-6 border-t border-rule pt-12 lg:grid-cols-2 lg:gap-20 lg:pt-14" : "max-w-[800px]"}>
+          <div className={s.ruled ? "grid gap-6 border-t border-rule pt-12 lg:grid-cols-2 lg:gap-20 lg:pt-14" : "grid gap-6 lg:grid-cols-[440px_1fr] lg:gap-24"}>
             {s.heading && (
-              <h2 className={`h-display text-ink ${s.ruled ? "text-[28px] leading-[1.2] md:text-[34px]" : "mb-6 text-[32px] md:text-[40px]"}`}>{s.heading}</h2>
+              <h2 className={`h-display text-ink ${s.ruled ? "text-[28px] leading-[1.2] md:text-[34px]" : "text-[32px] md:text-[44px] md:leading-[1.1]"}`}>{s.heading}</h2>
             )}
             <div className="flex flex-col gap-4">
               <Prose body={s.body} />
-              {s.link && <Link href={s.link.href} className="link-arrow inline-block py-1 font-bold">{s.link.label}</Link>}
+              {s.link && <Link href={s.link.href} className="link-arrow inline-flex min-h-11 items-center font-bold">{s.link.label}</Link>}
             </div>
           </div>
         </section>
@@ -160,12 +160,12 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
         <section className={`wrap flex flex-col gap-8 lg:gap-10 ${pad}`}>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <H2>{s.heading}</H2>
-            {s.link && <Link href={s.link.href} className="link-arrow hidden py-2 text-[16px] font-bold md:block">{s.link.label}</Link>}
+            {s.link && <Link href={s.link.href} className="link-arrow hidden min-h-11 items-center text-[16px] font-bold md:inline-flex">{s.link.label}</Link>}
           </div>
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr]">
             {posts.map((post, i) => <NewsCard key={post.slug} post={post} lead={i === 0} />)}
           </div>
-          {s.link && <Link href={s.link.href} className="link-arrow py-2 text-[16px] font-bold md:hidden">{s.link.label}</Link>}
+          {s.link && <Link href={s.link.href} className="link-arrow inline-flex min-h-11 items-center text-[16px] font-bold md:hidden">{s.link.label}</Link>}
         </section>
       );
     }

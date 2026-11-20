@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Sections } from "@/components/Sections";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { Prose, firstParagraph } from "@/components/Prose";
@@ -33,7 +35,7 @@ export default async function NewsArticle({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Breadcrumbs trail={[{ name: "News", href: "/news/" }, { name: post.title, href: `/news/${post.slug}/` }]} />
-      <article className="wrap pb-16 pt-8 md:pb-[120px]">
+      <article className="wrap pb-16 pt-4 md:pb-[96px]">
         <div className="flex max-w-[760px] flex-col gap-6">
           <h1 className="h-display text-[36px] text-ink md:text-[52px]">{post.title}</h1>
           <p className="text-[14px] font-semibold text-body">
@@ -44,8 +46,10 @@ export default async function NewsArticle({ params }: { params: Promise<{ slug: 
           </p>
           {post.coverImage && <Photo media={post.coverImage} priority sizes="760px" className="h-auto w-full rounded-md" />}
           <Prose body={post.body} />
+          <Link href="/news/" className="link-arrow mt-4 inline-flex min-h-11 items-center self-start font-bold">All news and updates</Link>
         </div>
       </article>
+      <Sections sections={[{ _type: "ctaBand", _key: "cta", heading: "Get in touch", body: "We would be glad to hear from you.", cta: { label: "Contact us", href: "/contact/" } }]} />
       <JsonLd
         data={{
           "@context": "https://schema.org",

@@ -16,13 +16,13 @@ export default async function Contact({ searchParams }: { searchParams: Promise<
   return (
     <>
       <Breadcrumbs trail={[{ name: "Contact", href: "/contact/" }]} />
-      <div className="wrap grid gap-12 pb-16 pt-8 md:pb-[120px] lg:grid-cols-2 lg:gap-20">
+      <div className="wrap grid gap-12 pb-16 pt-4 md:pb-[96px] lg:grid-cols-2 lg:gap-20">
         <div className="flex flex-col gap-6">
           <h1 className="h-display text-[40px] text-ink md:text-[56px]">Contact</h1>
-          <address className="flex flex-col gap-2 font-serif text-[18px] not-italic leading-[1.7] text-body">
+          <address className="flex flex-col gap-1 rounded-md border-t-[6px] border-burgundy bg-mist p-6 font-serif text-[18px] not-italic leading-[1.7] text-body lg:p-8">
             <span>{s.contact.address}</span>
-            <a href={`tel:${s.contact.phone.replace(/[^+\d]/g, "")}`} className="py-1 font-semibold">{s.contact.phone}</a>
-            <a href={`mailto:${s.contact.email}`} className="py-1 font-semibold">{s.contact.email}</a>
+            <a href={`tel:${s.contact.phone.replace(/[^+\d]/g, "")}`} className="inline-flex min-h-11 items-center font-semibold">{s.contact.phone}</a>
+            <a href={`mailto:${s.contact.email}`} className="inline-flex min-h-11 items-center font-semibold">{s.contact.email}</a>
           </address>
           <p className="text-[14px] text-body">Registered charity no. {s.charityNumber}</p>
         </div>

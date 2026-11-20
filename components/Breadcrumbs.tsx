@@ -2,21 +2,21 @@ import Link from "next/link";
 import { JsonLd } from "./JsonLd";
 import { absoluteUrl } from "@/lib/site";
 
-export function Breadcrumbs({ trail }: { trail: { name: string; href: string }[] }) {
+export function Breadcrumbs({ trail, dark = false }: { trail: { name: string; href: string }[]; dark?: boolean }) {
   const all = [{ name: "Home", href: "/" }, ...trail];
   return (
     <>
-      <nav aria-label="Breadcrumb" className="wrap pt-8 text-[14px] font-semibold">
-        <ol className="flex flex-wrap items-center gap-x-2 text-body">
+      <nav aria-label="Breadcrumb" className={`wrap pt-4 text-[14px] font-semibold ${dark ? "on-dark" : ""}`}>
+        <ol className={`flex flex-wrap items-center gap-x-2 ${dark ? "text-[#c4d3de]" : "text-body"}`}>
           {all.map((c, i) => (
             <li key={c.href} className="flex items-center gap-2">
               {i < all.length - 1 ? (
                 <>
-                  <Link href={c.href} className="py-2">{c.name}</Link>
+                  <Link href={c.href} className={`inline-flex min-h-11 items-center ${dark ? "!text-white" : ""}`}>{c.name}</Link>
                   <span aria-hidden="true">/</span>
                 </>
               ) : (
-                <span aria-current="page">{c.name}</span>
+                <span aria-current="page" className={dark ? "text-white" : ""}>{c.name}</span>
               )}
             </li>
           ))}

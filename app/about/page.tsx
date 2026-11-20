@@ -14,7 +14,7 @@ export default async function About() {
   if (!page) notFound();
   return (
     <>
-      <Breadcrumbs trail={[{ name: "About", href: "/about/" }]} />
+      <div className="bg-navy"><Breadcrumbs dark trail={[{ name: "About", href: "/about/" }]} /></div>
       <Sections sections={page.sections} />
     </>
   );
