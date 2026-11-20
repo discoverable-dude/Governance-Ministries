@@ -7,15 +7,15 @@ export function DivisionCard({ d }: { d: Division }) {
   const accent = ACCENT_HEX[d.accentColour];
   return (
     <article className="relative flex flex-col overflow-hidden rounded-md bg-mist">
-      <span className="block h-2" style={{ background: accent }} />
-      <Photo media={d.heroImage} sizes="(min-width:1024px) 33vw, 100vw" className="h-[180px] w-full lg:h-[220px]" />
+      <span className="block h-1.5 md:h-2" style={{ background: accent }} />
+      <Photo media={d.heroImage} sizes="(min-width:1024px) 33vw, 100vw" className="hidden h-[180px] w-full md:block lg:h-[220px]" />
       <div className="flex grow flex-col gap-3.5 p-6 lg:p-8">
         <h3 className="text-[22px] font-extrabold text-ink lg:text-[24px]">
           <Link href={`/about/${d.slug}/`} className="text-ink after:absolute after:inset-0 hover:text-brand">
             {d.name}
           </Link>
         </h3>
-        <p className="grow font-serif text-[16px] leading-[1.65] text-body lg:text-[17px]">{d.summary}</p>
+        <p className="grow font-serif text-[16px] leading-[1.6] text-body line-clamp-3 md:line-clamp-none lg:text-[17px]">{d.summary}</p>
         {d.externalUrl ? (
           <a href={d.externalUrl} className="relative z-10 inline-block py-2 text-[15px] font-bold">
             Visit {new URL(d.externalUrl).hostname.replace(/^www\./, "")}

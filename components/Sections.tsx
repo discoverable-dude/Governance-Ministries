@@ -20,13 +20,13 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
         <section className="on-dark bg-navy">
           <div className={`grid ${s.compact ? "" : "lg:grid-cols-[1fr_560px]"}`}>
             <div className={`wrap flex w-full flex-col gap-6 pb-12 pt-10 lg:gap-8 ${s.compact ? "lg:py-20" : "lg:pb-20 lg:pt-24"} ${s.compact ? "" : "lg:!mx-0 lg:!max-w-none lg:!pl-[max(120px,calc((100vw-1440px)/2+120px))] lg:!pr-16"}`}>
-              <H className={`h-display text-white ${s.compact ? "text-[40px] md:text-[56px]" : "text-[42px] md:text-[60px] lg:text-[76px]"}`}>{s.heading}</H>
+              <H className={`h-display text-white ${s.compact ? "text-[40px] md:text-[56px]" : "text-[42px] md:text-[60px] lg:text-[76px] lg:leading-[1.04] lg:tracking-[-0.015em]"}`}>{s.heading}</H>
               <RainbowBar className={s.compact ? "h-1.5 w-[180px]" : "h-1.5 w-[180px] lg:h-2 lg:w-[264px]"} />
               {s.intro && <p className="max-w-[600px] text-[16px] leading-[1.65] text-[#d3dee8] lg:text-[19px]">{s.intro}</p>}
               {(s.primaryCta || s.secondaryCta) && (
                 <div className="flex flex-col gap-4 sm:flex-row">
                   {s.primaryCta && <Link href={s.primaryCta.href} className="btn btn-light">{s.primaryCta.label}</Link>}
-                  {s.secondaryCta && <Link href={s.secondaryCta.href} className="btn btn-ghost">{s.secondaryCta.label}</Link>}
+                  {s.secondaryCta && <Link href={s.secondaryCta.href} className="btn btn-ghost hidden sm:inline-flex">{s.secondaryCta.label}</Link>}
                 </div>
               )}
             </div>
@@ -66,7 +66,7 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
       const divisions = s.fromDivisions ? await getDivisions() : [];
       const cols = s.columns === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3";
       return (
-        <section className={`wrap flex flex-col gap-8 lg:gap-12 ${pad}`}>
+        <section className={`wrap flex flex-col gap-8 lg:gap-12 ${pad} ${!s.fromDivisions && s.columns === 2 ? "lg:grid lg:grid-cols-[440px_1fr] lg:gap-24" : ""}`}>
           {s.heading && <H2>{s.heading}</H2>}
           {s.fromDivisions ? (
             <div className={`grid gap-6 md:grid-cols-2 lg:gap-8 ${cols}`}>
@@ -92,7 +92,7 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
       return (
         <section className={`mt-14 bg-mist md:mt-[120px]`}>
           <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[620px_1fr]">
-            <Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-full lg:min-h-[560px]" />
+            <Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-[600px]" />
             <div className="flex flex-col justify-center gap-5 px-5 py-8 md:px-12 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
               <h2 className="h-display text-[32px] text-ink md:text-[48px] md:leading-[1.08]">{s.heading}</h2>
               {s.eyebrow && <p className="text-[15px] font-semibold text-burgundy lg:text-[16px]">{s.eyebrow}</p>}
@@ -160,11 +160,12 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
         <section className={`wrap flex flex-col gap-8 lg:gap-10 ${pad}`}>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <H2>{s.heading}</H2>
-            {s.link && <Link href={s.link.href} className="py-2 text-[16px] font-bold">{s.link.label}</Link>}
+            {s.link && <Link href={s.link.href} className="hidden py-2 text-[16px] font-bold md:block">{s.link.label}</Link>}
           </div>
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr]">
             {posts.map((post, i) => <NewsCard key={post.slug} post={post} lead={i === 0} />)}
           </div>
+          {s.link && <Link href={s.link.href} className="py-2 text-[16px] font-bold md:hidden">{s.link.label}</Link>}
         </section>
       );
     }

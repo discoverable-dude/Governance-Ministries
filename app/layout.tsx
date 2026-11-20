@@ -8,7 +8,7 @@ import { getSettings } from "@/lib/content";
 import "./globals.css";
 
 const sans = Montserrat({ subsets: ["latin"], variable: "--font-montserrat", display: "swap" });
-const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-source-serif", display: "swap" });
+const serif = Source_Serif_4({ subsets: ["latin"], axes: ["opsz"], variable: "--font-source-serif", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

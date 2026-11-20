@@ -9,12 +9,12 @@ export async function Header() {
   const [settings, divisions] = await Promise.all([getSettings(), getDivisions()]);
   return (
     <header className="on-dark relative bg-navy">
-      <div className="wrap flex h-[76px] items-center justify-between lg:h-24">
+      <div className="wrap flex h-[76px] items-center justify-between xl:h-24">
         <Link href="/" aria-label="Governance Ministries home" className="py-2">
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-[34px] xl:flex">
           {settings.nav.map((item) =>
             item.href === "/about/" ? (
               <div key={item.href} className="group relative">
@@ -38,7 +38,7 @@ export async function Header() {
           </Link>
         </nav>
 
-        <details className="group lg:hidden">
+        <details className="group xl:hidden">
           <summary
             aria-label="Menu"
             className="flex h-12 w-12 cursor-pointer list-none items-center justify-center [&::-webkit-details-marker]:hidden"

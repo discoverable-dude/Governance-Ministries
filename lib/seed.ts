@@ -23,6 +23,9 @@ export const settings: SiteSettings = {
   siteName: "Governance Ministries",
   nav: [
     { label: "About", href: "/about/" },
+    { label: "Workplace Church", href: "/about/workplace-church/" },
+    { label: "TBN UK", href: "/about/tbn-uk/" },
+    { label: "Life Campus", href: "/about/life-campus/" },
     { label: "News", href: "/news/" },
     { label: "Contact", href: "/contact/" },
   ],
