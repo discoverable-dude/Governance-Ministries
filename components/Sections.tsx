@@ -92,7 +92,7 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
       return (
         <section className={`mt-14 bg-mist md:mt-[120px]`}>
           <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[620px_1fr]">
-            <Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full lg:h-full lg:min-h-[560px]" />
+            <Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-full lg:min-h-[560px]" />
             <div className="flex flex-col justify-center gap-5 px-5 py-8 md:px-12 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
               <h2 className="h-display text-[32px] text-ink md:text-[48px] md:leading-[1.08]">{s.heading}</h2>
               {s.eyebrow && <p className="text-[15px] font-semibold text-burgundy lg:text-[16px]">{s.eyebrow}</p>}

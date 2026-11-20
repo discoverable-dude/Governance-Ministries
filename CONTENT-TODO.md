@@ -8,8 +8,8 @@ Copy marked `// confirm` in `lib/seed.ts` is placeholder wording awaiting the re
 - **News post**: the Enterprise Centre post is built only from facts in the design. Needs real body text, date and photo. Its slug is new.
 - **Free book CTA**: currently goes to `/contact/?topic=book` (form prefilled). Replace with the real fulfilment link if there is one.
 
-## Photography (cards currently show tinted blocks)
-Hero (camera operator), six division images, book cover, news cover. The design's image assets were not accessible from the build environment.
+## Photography
+Hero, book, TBN UK and Life Campus images come from the design concept (`public/images/`). Still tinted blocks: Workplace Church, TBN Europe, Living Seeds and OnePalm cards, and the news cover. Client to supply archive photography; replace the concept images with finals when available.
 
 ## Decisions
 - `/feed/` redirects to `/news/` (per `redirects.json`). Change to a real RSS route if the client wants a feed.

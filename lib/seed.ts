@@ -3,7 +3,13 @@
  * and the reference for what to enter in the Studio. Copy marked "confirm" is awaiting
  * client sign-off: see CONTENT-TODO.md.
  */
-import type { Block, Division, NewsPost, Page, SiteSettings } from "./types";
+import type { Block, Division, Media, NewsPost, Page, SiteSettings } from "./types";
+
+const img = (file: string, alt: string, width: number, height: number): Media => ({ src: `/images/${file}`, alt, width, height });
+const heroStudio = img("hero-studio.jpg", "A camera operator filming in the studio", 1333, 1404);
+const bookImage = img("book-glory-returns.jpg", "The Glory Returns to the Workplace by Richard Fleming", 1600, 1052);
+const tbnImage = img("tbn-uk.jpg", "TBN UK presenters", 1600, 728);
+const lifeCampusImage = img("life-campus-site-plan.jpg", "Site plan of Life Campus, Whitfield", 1600, 859);
 
 export const p = (key: string, text: string): Block => ({
   _type: "block",
@@ -48,6 +54,7 @@ export const divisions: Division[] = [
     name: "TBN UK",
     slug: "tbn-uk",
     accentColour: "cyan",
+    heroImage: tbnImage,
     order: 2,
     externalUrl: "https://tbnuk.org/",
     summary:
@@ -84,6 +91,7 @@ export const divisions: Division[] = [
     name: "Life Campus",
     slug: "life-campus",
     accentColour: "burgundy",
+    heroImage: lifeCampusImage,
     order: 6,
     summary:
       "The trust is one of the landlords of Life Campus, a six-acre site in Whitfield, Dover, home to a preschool, a church, charities and, from April 2027, the Enterprise Centre.",
@@ -127,6 +135,7 @@ export const pages: Page[] = [
         _type: "hero",
         _key: "h",
         heading: "Jesus is the answer in our cities and nations.",
+        image: heroStudio,
         intro:
           "Governance Ministries is a charitable trust pioneering workplace church: Christians carrying the gospel into business, media and public life.",
         primaryCta: { label: "See our work", href: "/about/" },
@@ -155,6 +164,7 @@ export const pages: Page[] = [
         _type: "splitFeature",
         _key: "book",
         heading: "The Glory Returns to the Workplace",
+        image: bookImage,
         eyebrow: "By Richard Fleming. Foreword by Dr Bill Hamon.",
         body: "A practical guide to walking in your calling where you already spend most of your week: at work.",
         quote: {
