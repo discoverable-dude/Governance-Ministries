@@ -55,3 +55,88 @@ a:hover { color: var(--color-brand-dark); }
 .btn-dark { background: var(--color-navy); color: #fff; }
 .btn-dark:hover { background: var(--color-navy-deep); color: #fff; }
 }
+
+/* ---------- Character & motion ---------------------------------------------
+   CSS only. Everything that moves lives inside prefers-reduced-motion: no-preference,
+   uses transform/opacity only (no layout shift), and content is fully visible without it.
+   "backwards" fill means nothing is left hidden or displaced once an animation ends. */
+
+.link-arrow::after { content: "\2192" / ""; display: inline-block; margin-left: 0.4em; }
+.quote-mark::before {
+  content: "\201C" / ""; display: block; font-family: var(--font-serif); font-size: 96px; line-height: 0.6;
+  height: 40px; color: var(--color-orange); margin-bottom: 4px;
+}
+.scroll-progress { display: none; }
+
+@media print { .reveal, .reveal-bar { animation: none !important; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.22s; }
+
+  @keyframes rise { from { transform: translateY(20px); } to { transform: none; } }
+  @keyframes fade-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes drift { from { transform: scale(1.09); } to { transform: scale(1); } }
+  @keyframes bump { 40% { transform: translateY(-4px) scaleY(1.6); } }
+
+  /* Hero: headline slides up (never faded, so LCP text is never held back), bar wipes in colour by colour */
+  .hero-title { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .hero-fade { animation: fade-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s backwards; }
+  .hero-photo img { animation: drift 2.6s cubic-bezier(0.2, 0.6, 0.2, 1) backwards; }
+  .rainbow-draw > span {
+    transform-origin: left; animation: draw 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+    animation-delay: calc(0.25s + var(--i) * 90ms);
+  }
+
+  /* Logo: the six colours hop on hover */
+  .logo:hover .rainbow > span, .logo:focus-visible .rainbow > span {
+    animation: bump 0.5s ease backwards; animation-delay: calc(var(--i) * 55ms);
+  }
+
+  /* Nav: each link underlines in its own brand colour */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 3px; background: var(--c, #fff);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .nav-link:hover::after, .nav-link:focus-visible::after, .group:hover > .nav-link::after, .group:focus-within > .nav-link::after { transform: scaleX(1); }
+  nav[aria-label="Main"] > :nth-child(6n + 1) { --c: #ff8f24; }
+  nav[aria-label="Main"] > :nth-child(6n + 2) { --c: #f34957; }
+  nav[aria-label="Main"] > :nth-child(6n + 3) { --c: #2db9e6; }
+  nav[aria-label="Main"] > :nth-child(6n + 4) { --c: #6dd1db; }
+  nav[aria-label="Main"] > :nth-child(6n + 5) { --c: #f34957; }
+  nav[aria-label="Main"] > :nth-child(6n + 6) { --c: #ff8f24; }
+
+  /* Buttons */
+  .btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5); }
+  .btn:active { transform: translateY(0); box-shadow: none; }
+  .link-arrow::after { transition: transform 0.2s ease; }
+  .link-arrow:hover::after, .card:hover .link-arrow::after { transform: translateX(5px); }
+
+  /* Cards lift, tint toward their own accent colour, bar thickens, photo zooms */
+  .card { transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, background-color 0.3s ease; }
+  .card:hover, .card:focus-within {
+    transform: translateY(-6px); box-shadow: 0 22px 40px -22px rgba(11, 45, 72, 0.55);
+    background-color: color-mix(in srgb, var(--accent, #0e5685) 9%, #eef3f6);
+  }
+  .card-bar { transition: height 0.3s ease; }
+  .card:hover .card-bar, .card:focus-within .card-bar { height: 14px; }
+  .card img, .media-zoom img { transition: transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1); }
+  .card:hover img, .media-zoom:hover img { transform: scale(1.06); }
+
+  /* Scroll-driven extras: progressive enhancement, content is already visible without them */
+  @supports (animation-timeline: view()) {
+    .reveal { animation: fade-rise linear backwards; animation-timeline: view(); animation-range: entry 0% entry 32%; }
+    .reveal:nth-child(3n + 2) { animation-range: entry 6% entry 38%; }
+    .reveal:nth-child(3n + 3) { animation-range: entry 12% entry 44%; }
+    .reveal-bar { transform-origin: left; animation: draw linear backwards; animation-timeline: view(); animation-range: entry 10% entry 55%; }
+    .book-photo img { animation: drift linear both; animation-timeline: view(); animation-range: entry 0% exit 60%; }
+    .scroll-progress {
+      display: block; position: fixed; inset: 0 0 auto 0; height: 4px; z-index: 60; pointer-events: none;
+      background: linear-gradient(90deg, #ff8f24 0 15%, #f34957 15% 35%, #94153e 35% 53%, #1b6ea8 53% 65%, #2db9e6 65% 83%, #6dd1db 83% 100%);
+      transform-origin: left; animation: draw linear both; animation-timeline: scroll(root);
+    }
+  }
+}

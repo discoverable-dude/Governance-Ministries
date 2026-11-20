@@ -8,7 +8,7 @@ import { getDivisions, getNews } from "@/lib/content";
 import type { Section } from "@/lib/types";
 
 const H2 = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="h-display text-[32px] text-ink md:text-[48px] md:leading-[1.1]">{children}</h2>
+  <h2 className="reveal h-display text-[32px] text-ink md:text-[48px] md:leading-[1.1]">{children}</h2>
 );
 const pad = "pt-14 md:pt-[120px]";
 
@@ -20,18 +20,18 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
         <section className="on-dark bg-navy">
           <div className={`grid ${s.compact ? "" : "lg:grid-cols-[1fr_560px]"}`}>
             <div className={`wrap flex w-full flex-col gap-6 pb-12 pt-10 lg:gap-8 ${s.compact ? "lg:py-20" : "lg:pb-20 lg:pt-24"} ${s.compact ? "" : "lg:!mx-0 lg:!max-w-none lg:!pl-[max(120px,calc((100vw-1440px)/2+120px))] lg:!pr-16"}`}>
-              <H className={`h-display text-white ${s.compact ? "text-[40px] md:text-[56px]" : "text-[42px] md:text-[60px] lg:text-[76px] lg:leading-[1.04] lg:tracking-[-0.015em]"}`}>{s.heading}</H>
-              <RainbowBar className={s.compact ? "h-1.5 w-[180px]" : "h-1.5 w-[180px] lg:h-2 lg:w-[264px]"} />
-              {s.intro && <p className="max-w-[600px] text-[16px] leading-[1.65] text-[#d3dee8] lg:text-[19px]">{s.intro}</p>}
+              <H className={`hero-title h-display text-white ${s.compact ? "text-[40px] md:text-[56px]" : "text-[42px] md:text-[60px] lg:text-[76px] lg:leading-[1.04] lg:tracking-[-0.015em]"}`}>{s.heading}</H>
+              <RainbowBar animate className={s.compact ? "h-1.5 w-[180px]" : "h-1.5 w-[180px] lg:h-2 lg:w-[264px]"} />
+              {s.intro && <p className="hero-fade max-w-[600px] text-[16px] leading-[1.65] text-[#d3dee8] lg:text-[19px]">{s.intro}</p>}
               {(s.primaryCta || s.secondaryCta) && (
-                <div className="flex flex-col gap-4 sm:flex-row">
+                <div className="hero-fade flex flex-col gap-4 sm:flex-row">
                   {s.primaryCta && <Link href={s.primaryCta.href} className="btn btn-light">{s.primaryCta.label}</Link>}
                   {s.secondaryCta && <Link href={s.secondaryCta.href} className="btn btn-ghost hidden sm:inline-flex">{s.secondaryCta.label}</Link>}
                 </div>
               )}
             </div>
             {!s.compact && (
-              <div className="relative h-[230px] lg:h-[620px]">
+              <div className="hero-photo relative h-[230px] overflow-hidden lg:h-[620px]">
                 {s.image ? (
                   <Photo media={s.image} priority sizes="(min-width:1024px) 560px, 100vw" className="h-full w-full" />
                 ) : (
@@ -75,8 +75,8 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
           ) : (
             <div className={`grid gap-8 lg:gap-12 ${cols}`}>
               {s.cards?.map((c) => (
-                <div key={c.title} className="flex flex-col gap-3 lg:gap-4">
-                  {c.accent && <span aria-hidden="true" className="block h-1.5 w-12" style={{ background: ACCENT_HEX[c.accent] }} />}
+                <div key={c.title} className="reveal flex flex-col gap-3 lg:gap-4">
+                  {c.accent && <span aria-hidden="true" className="reveal-bar block h-1.5 w-12" style={{ background: ACCENT_HEX[c.accent] }} />}
                   <h3 className="text-[19px] font-bold leading-[1.3] text-ink lg:text-[22px]">{c.title}</h3>
                   <p className="font-serif text-[17px] leading-[1.7] text-body lg:text-[18px]">{c.body}</p>
                   {c.link && <Link href={c.link.href} className="font-bold">{c.link.label}</Link>}
@@ -92,13 +92,13 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
       return (
         <section className={`mt-14 bg-mist md:mt-[120px]`}>
           <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[620px_1fr]">
-            <Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-[600px]" />
-            <div className="flex flex-col justify-center gap-5 px-5 py-8 md:px-12 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
+            <div className="book-photo overflow-hidden"><Photo media={s.image} sizes="(min-width:1024px) 620px, 100vw" tint="#c9d7e0" className="h-[240px] w-full object-[30%_50%] lg:h-[600px]" /></div>
+            <div className="reveal flex flex-col justify-center gap-5 px-5 py-8 md:px-12 lg:gap-[22px] lg:py-20 lg:pl-20 lg:pr-[120px]">
               <h2 className="h-display text-[32px] text-ink md:text-[48px] md:leading-[1.08]">{s.heading}</h2>
               {s.eyebrow && <p className="text-[15px] font-semibold text-burgundy lg:text-[16px]">{s.eyebrow}</p>}
               <p className="font-serif text-[17px] leading-[1.7] text-body lg:text-[18px]">{s.body}</p>
               {s.quote && (
-                <figure className="flex flex-col gap-2">
+                <figure className="quote-mark flex flex-col gap-2">
                   <blockquote className="font-serif text-[20px] leading-[1.5] text-ink lg:text-[22px]">&ldquo;{s.quote.text}&rdquo;</blockquote>
                   <figcaption className="text-[14px] font-semibold text-body">{s.quote.attribution}</figcaption>
                 </figure>
@@ -134,7 +134,7 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
             )}
             <div className="flex flex-col gap-4">
               <Prose body={s.body} />
-              {s.link && <Link href={s.link.href} className="inline-block py-1 font-bold">{s.link.label}</Link>}
+              {s.link && <Link href={s.link.href} className="link-arrow inline-block py-1 font-bold">{s.link.label}</Link>}
             </div>
           </div>
         </section>
@@ -160,12 +160,12 @@ async function Render({ s, first }: { s: Section; first: boolean }) {
         <section className={`wrap flex flex-col gap-8 lg:gap-10 ${pad}`}>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <H2>{s.heading}</H2>
-            {s.link && <Link href={s.link.href} className="hidden py-2 text-[16px] font-bold md:block">{s.link.label}</Link>}
+            {s.link && <Link href={s.link.href} className="link-arrow hidden py-2 text-[16px] font-bold md:block">{s.link.label}</Link>}
           </div>
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr]">
             {posts.map((post, i) => <NewsCard key={post.slug} post={post} lead={i === 0} />)}
           </div>
-          {s.link && <Link href={s.link.href} className="py-2 text-[16px] font-bold md:hidden">{s.link.label}</Link>}
+          {s.link && <Link href={s.link.href} className="link-arrow py-2 text-[16px] font-bold md:hidden">{s.link.label}</Link>}
         </section>
       );
     }

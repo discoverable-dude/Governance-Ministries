@@ -28,9 +28,9 @@ export default async function DivisionPage({ params }: { params: Promise<{ slug:
       <Breadcrumbs trail={[{ name: "About", href: "/about/" }, { name: d.name, href: `/about/${d.slug}/` }]} />
       <div className="wrap grid gap-12 pb-16 pt-8 md:pb-[120px] lg:grid-cols-[1fr_280px] lg:gap-20">
         <article className="flex flex-col gap-6">
-          <span aria-hidden="true" className="block h-2 w-20" style={{ background: ACCENT_HEX[d.accentColour] }} />
+          <span aria-hidden="true" className="reveal-bar block h-2 w-20" style={{ background: ACCENT_HEX[d.accentColour] }} />
           <h1 className="h-display text-[40px] text-ink md:text-[56px]">{d.name}</h1>
-          <RainbowBar className="h-1 w-32" />
+          <RainbowBar animate className="h-1 w-32" />
           {d.heroImage && <Photo media={d.heroImage} priority sizes="(min-width:1024px) 800px, 100vw" className="h-auto w-full rounded-md" />}
           <p className="max-w-[720px] font-serif text-[20px] leading-[1.6] text-ink md:text-[22px]">{d.summary}</p>
           <div className="max-w-[720px]"><Prose body={d.body.slice(d.body.length > 1 ? 0 : 1)} /></div>

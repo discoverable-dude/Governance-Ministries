@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "./Logo";
+import { Logo, RainbowBar } from "./Logo";
 import { getDivisions, getSettings } from "@/lib/content";
 
 const col = "text-[15px] text-[#c4d3de] hover:text-white py-1.5 inline-block";
@@ -9,6 +9,7 @@ export async function Footer() {
   const c = settings.contact;
   return (
     <footer className="on-dark bg-navy-deep">
+      <RainbowBar className="h-1.5" />
       <div className="wrap grid gap-10 py-14 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-12 lg:py-16">
         <div className="flex flex-col gap-5">
           <Logo small />

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "./Logo";
 import { getDivisions, getSettings } from "@/lib/content";
 
-const linkCls = "text-[15px] font-semibold text-white hover:text-white hover:underline underline-offset-4";
+const linkCls = "nav-link text-[15px] font-semibold text-white hover:text-white hover:underline underline-offset-4";
 
 /** No client JS: desktop dropdown is CSS (hover / focus-within), mobile menu is a native <details>. */
 export async function Header() {
@@ -10,7 +10,7 @@ export async function Header() {
   return (
     <header className="on-dark relative bg-navy">
       <div className="wrap flex h-[76px] items-center justify-between xl:h-24">
-        <Link href="/" aria-label="Governance Ministries home" className="py-2">
+        <Link href="/" aria-label="Governance Ministries home" className="logo py-2">
           <Logo />
         </Link>
 

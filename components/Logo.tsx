@@ -1,11 +1,11 @@
-export function RainbowBar({ className = "h-1" }: { className?: string }) {
+export function RainbowBar({ className = "h-1", animate = false }: { className?: string; animate?: boolean }) {
   const segs: [number, string][] = [
     [15, "#ff8f24"], [20, "#f34957"], [18, "#94153e"], [12, "#1b6ea8"], [18, "#2db9e6"], [17, "#6dd1db"],
   ];
   return (
-    <span aria-hidden="true" className={`flex ${className}`}>
-      {segs.map(([g, c]) => (
-        <span key={c} style={{ flexGrow: g, background: c }} />
+    <span aria-hidden="true" className={`rainbow flex ${animate ? "rainbow-draw" : ""} ${className}`}>
+      {segs.map(([g, c], i) => (
+        <span key={c} style={{ flexGrow: g, background: c, ["--i" as string]: i }} />
       ))}
     </span>
   );

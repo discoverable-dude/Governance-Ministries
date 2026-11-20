@@ -20,3 +20,6 @@ pnpm build && pnpm start
 - JSON-LD: Organization (UKTrust + charity no. 1051780), BreadcrumbList, NewsArticle.
 
 See `CONTENT-TODO.md` for outstanding content and decisions.
+
+## Motion
+CSS only, in `app/globals.css` ("Character & motion"). Wrapped in `prefers-reduced-motion: no-preference`, transform/opacity only, and content is visible without it (verified: CLS 0, no animations under reduced motion). Scroll-driven effects are progressive enhancement behind `@supports (animation-timeline: view())`.

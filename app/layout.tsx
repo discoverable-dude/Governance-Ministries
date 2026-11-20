@@ -23,6 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en-GB" className={`${sans.variable} ${serif.variable}`}>
       <body>
+        <div className="scroll-progress" aria-hidden="true" />
         <a
           href="#main"
           className="sr-only z-50 bg-white px-4 py-3 font-bold text-navy focus:not-sr-only focus:absolute focus:left-3 focus:top-3"
